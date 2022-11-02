@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="accueil">
+    <section id="inscription">
+        <h1>Inscrivez-vous maintenant</h1>
+        <a class="bouton" href="{% url 'inscription' %}">S'inscrire</a>
+    </section>
+    <section id="connexion">
+        <h1>Connectez-vous</h1>
+        <form method="post" novalidate>  <!-- supprimer le novalidate -->
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="bouton" type="submit">Se connecter</button>
+        </form>
+    </section>
+</div>
+{% endblock content %}

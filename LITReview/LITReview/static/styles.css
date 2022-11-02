@@ -1,0 +1,73 @@
+* {
+   font-family: "Arial", "Georgia", "sans-serif"
+   box-sizing: border-box;
+}
+
+header {
+    border: 1px black solid;
+    text-align : center;
+}
+header h1 {
+    display: inline-block;
+    margin: 0
+}
+header nav {
+    display: inline-block;
+    float: right;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+header nav a {
+    text-decoration: none;
+    color: black;
+    margin: 4px;
+}
+
+#accueil {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.bouton {
+    color: black;
+    text-decoration: none;
+    font-size: small;
+    background-color: white;
+    border: 1px black solid;
+    border-radius: 7px;
+    padding: 5px 10px 5px 10px;
+}
+
+#inscription {
+    margin-top: 20px;
+    text-align: center;
+}
+#inscription h1 {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+#connexion {
+    margin-top: 20px;
+}
+#connexion h1 {
+    text-align: center;
+}
+#connexion form {
+    text-align: right;
+}
+
+#formulaire_inscription h1 {
+    text-align: center;
+}
+
+#flux {
+    text-align: center;
+}
+#boutons {
+    margin-top: 20px;
+}
+#boutons .bouton {
+    margin-right: 50px;
+}
