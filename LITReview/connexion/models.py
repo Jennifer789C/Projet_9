@@ -4,8 +4,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    abonnement = models.ManyToManyField("self", through="Abonnement",
-                                        symmetrical=False)
+    pass
 
 
 class Abonnement(models.Model):

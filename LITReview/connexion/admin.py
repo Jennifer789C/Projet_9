@@ -3,7 +3,7 @@ from . import models
 
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ("username", "is_superuser")
+    list_display = ("username", "id", "is_superuser")
 
 
 class AbonnementAdmin(admin.ModelAdmin):
