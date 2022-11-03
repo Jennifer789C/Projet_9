@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from . import forms
 
 
 @login_required
@@ -9,4 +10,14 @@ def flux(request):
 
 @login_required
 def suivre_user(request):
-    return render(request, "abonnements.html")
+    form = forms.AbonnementForm(instance=request.user)
+    if request.method == "POST":
+        form = forms.AbonnementForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect("abonnements")
+    connecte = request.user
+    user_suivis = connecte.user_suivi.all()
+    abonnes = connecte.suivi_par.all()
+    context = {"form": form, "user_suivis": user_suivis, "abonnés": abonnes}
+    return render(request, "abonnements.html", context=context)

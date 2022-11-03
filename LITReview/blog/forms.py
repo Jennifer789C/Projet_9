@@ -7,3 +7,8 @@ User = get_user_model()
 class AbonnementForm(forms.ModelForm):
     class Meta:
         model = User
+        fields = ["abonnement"]
+        labels = {"abonnement": "Nom d'utilisateur"}
+
+
+# ce form fonctionne mais nous n'avons pas la zone de texte
