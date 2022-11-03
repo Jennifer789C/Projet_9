@@ -19,9 +19,10 @@ def suivre_user(request):
     if request.method == "POST":
         form = forms.AbonnementForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data["username"]
+            username = form.cleaned_data["user_suivi"]
             user_id = User.objects.get(username=username)
-            connecte.user_suivi.add(user_id)   # renvoie une TypeError: "Abonnement" instance expected, got <User: jenny@789>
+            user_suivi = models.Abonnement.user_suivi.create(user_suivi_id=user_id)
+            connecte.user_suivi.add(user_suivi)
             return redirect("abonnements")
     user_suivis = connecte.user_suivi.all()
     abonnes = connecte.suivi_par.all()
