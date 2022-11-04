@@ -22,7 +22,8 @@ def suivre_user(request):
             username = form.cleaned_data["user_suivi"]
             user_suivi = User.objects.get(username=username)
             choix = form.save(commit=False)
-            models.Abonnement.objects.create(user=request.user, user_suivi=user_suivi)
+            models.Abonnement.objects.create(user=request.user,
+                                             user_suivi=user_suivi)
             choix.save()
             return redirect("abonnements")
     user_suivis = connecte.user_suivi.all()

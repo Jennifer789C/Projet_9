@@ -12,10 +12,10 @@
     <section id="abonnements">
         <h2>Abonnements</h2>
         <ul>
-            {% if user_suivis %}
-                {% for user_suivi in user_suivis %}
+            {% if abonnés %}
+                {% for abonné in abonnés %}
                     <li>
-                        {{ user_suivi }}
+                        {{ abonné.user_suivi.username }}
                         <a class="bouton" href="#">Désabonner</a>
                     </li>
                 {% endfor %}
@@ -27,10 +27,10 @@
     <section id="abonnes">
         <h2>Abonnés</h2>
         <ul>
-            {% if abonnés %}
-                {% for abonné in abonnés %}
+            {% if user_suivis %}
+                {% for user_suivi in user_suivis %}
                     <li>
-                        {{ abonné }}
+                        {{ user_suivi }}
                     </li>
                 {% endfor %}
             {% else %}
