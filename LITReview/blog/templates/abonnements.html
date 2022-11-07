@@ -15,7 +15,7 @@
             {% if user_suivis %}
                 {% for user_suivi in user_suivis %}
                     <li>
-                        {{ user_suivi }}
+                        {{ user_suivi.user_suivi.username }}
                         <a class="bouton" href="#">Désabonner</a>
                     </li>
                 {% endfor %}
@@ -30,7 +30,7 @@
             {% if abonnés %}
                 {% for abonné in abonnés %}
                     <li>
-                        {{ abonné }}
+                        {{ abonné.user.username }}
                     </li>
                 {% endfor %}
             {% else %}
