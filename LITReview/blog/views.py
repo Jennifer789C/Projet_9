@@ -19,12 +19,11 @@ def suivre_user(request):
     if request.method == "POST":
         form = forms.AbonnementForm(request.POST, instance=request.user)
         if form.is_valid():
-            username = form.cleaned_data["user_suivi"]
-            user_suivi = User.objects.get(username=username)
-            choix = form.save(commit=False)
+            user_suivi = form.cleaned_data["user_suivi"]
+            form = form.save(commit=False)
             models.Abonnement.objects.create(user=request.user,
                                              user_suivi=user_suivi)
-            choix.save()
+            form.save()
             return redirect("abonnements")
     user_suivis = connecte.qui_suit.all()
     abonnes = connecte.suivi_par.all()
