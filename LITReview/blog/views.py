@@ -14,16 +14,15 @@ def flux(request):
 
 @login_required
 def suivre_user(request):
-    form = forms.AbonnementForm(instance=request.user)
+    form = forms.AbonnementForm()
     connecte = request.user
     if request.method == "POST":
-        form = forms.AbonnementForm(request.POST, instance=request.user)
+        form = forms.AbonnementForm(request.POST)
         if form.is_valid():
-            user_suivi = form.cleaned_data["user_suivi"]
-            form = form.save(commit=False)
+            username = form.cleaned_data["utilisateur"]
+            user_suivi = User.objects.get(username=username)
             models.Abonnement.objects.create(user=request.user,
                                              user_suivi=user_suivi)
-            form.save()
             return redirect("abonnements")
     user_suivis = connecte.qui_suit.all()
     abonnes = connecte.suivi_par.all()
