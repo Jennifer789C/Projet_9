@@ -26,7 +26,7 @@ def suivre_user(request):
                                              user_suivi=user_suivi)
             choix.save()
             return redirect("abonnements")
-    user_suivis = connecte.user_suivi.all()
+    user_suivis = connecte.qui_suit.all()
     abonnes = connecte.suivi_par.all()
     context = {"form": form, "user_suivis": user_suivis, "abonnés": abonnes}
     return render(request, "abonnements.html", context=context)

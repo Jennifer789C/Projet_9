@@ -3,6 +3,8 @@ from connexion import models
 
 
 class AbonnementForm(forms.ModelForm):
+
+
     class Meta:
         model = models.Abonnement
         fields = ["user_suivi"]

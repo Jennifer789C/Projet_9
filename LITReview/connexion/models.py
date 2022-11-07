@@ -11,10 +11,10 @@ class User(AbstractUser):
 class Abonnement(models.Model):
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE,
-                             related_name="suivi_par")
+                             related_name="qui_suit")
     user_suivi = models.ForeignKey(to=settings.AUTH_USER_MODEL,
                                    on_delete=models.CASCADE,
-                                   related_name="user_suivi")
+                                   related_name="suivi_par")
 
     class Meta:
         unique_together = ("user", "user_suivi")
