@@ -28,4 +28,6 @@ urlpatterns = [
     path("inscription/", connexion.views.inscription_page, name="inscription"),
     path("flux/", blog.views.flux, name="flux"),
     path("abonnements/", blog.views.suivre_user, name="abonnements"),
+    path("abonnements/<int:abonnement_id>/delete/", blog.views.desabonner,
+         name="désabonnement"),
 ]

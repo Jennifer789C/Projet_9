@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="page_désabonnement">
+    <h2>Se désabonner</h2>
+    <p>
+        Etes-vous sûr de vouloir vous désabonner de
+        {{abonnement.user_suivi.username}} ?
+    </p>
+    <form method="post">
+        {% csrf_token %}
+        {{ désabonnement }}
+        <button class="bouton" type="submit">Se désabonner</button>
+    </form>
+</div>
+
+{% endblock content %}

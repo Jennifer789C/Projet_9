@@ -12,12 +12,16 @@
     <section id="abonnements">
         <h2>Abonnements</h2>
         <ul>
-            {% if user_suivis %}
-                {% for user_suivi in user_suivis %}
-                    <li>
-                        {{ user_suivi.user_suivi.username }}
-                        <a class="bouton" href="#">Désabonner</a>
-                    </li>
+            {% if abonnements %}
+                {% for abonnement in abonnements %}
+                    {% if user == abonnement.user %}
+                        <li>
+                            {{ abonnement.user_suivi.username }}
+                            <a class="bouton"
+                               href="{% url 'désabonnement' abonnement.id %}">
+                                Se désabonner</a>
+                        </li>
+                    {% endif %}
                 {% endfor %}
             {% else %}
                 <li>vous n'êtes abonné à personne</li>
