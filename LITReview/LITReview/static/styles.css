@@ -58,16 +58,26 @@ header nav a {
     text-align: right;
 }
 
-#formulaire_inscription h1 {
+#formulaire_inscription h1, #page_abonnements, #page_désabonnement {
     text-align: center;
 }
 
 #flux {
     text-align: center;
 }
-#boutons {
+#flux_boutons {
     margin-top: 20px;
 }
-#boutons .bouton {
+#flux_boutons .bouton {
     margin-right: 50px;
+}
+
+#suivre_user, #abonnements, #abonnes {
+    margin-top: 30px;
+}
+#abonnements ul, #abonnes ul {
+    list-style-type: none;
+}
+#abonnements li, #abonnes li {
+    padding: 5px;
 }
