@@ -14,6 +14,13 @@ def flux(request):
 
 
 @login_required
+def posts(request):
+    tickets = models.Ticket.objects.filter(user=request.user)
+    context = {"tickets": tickets}
+    return render(request, "posts.html", context=context)
+
+
+@login_required
 def creer_ticket(request):
     form = forms.TicketForm()
     if request.method == "POST":

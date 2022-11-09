@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="posts">
+    {% for ticket in tickets %}
+        <article class="ticket">
+            <p class="user">Vous avez demandé une critique</p>
+            <p class="date">{{ ticket.date }}</p>
+            <p class="titre">{{ ticket.titre }}</p>
+            <p>{{ ticket.description }}</p>
+            {% if ticket.image %}
+                <img src="{{ ticket.image.url }}">
+            {% endif %}
+            <div>
+                <a class="bouton" href="#">Modifier</a>
+                <a class="bouton" href="#">Supprimer</a>
+            </div>
+        </article>
+    {% endfor %}
+</div>
+
+{% endblock content %}

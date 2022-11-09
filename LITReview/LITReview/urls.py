@@ -32,6 +32,7 @@ urlpatterns = [
     path("abonnements/<int:abonnement_id>/delete/", connexion.views.desabonner,
          name="désabonnement"),
     path("flux/", blog.views.flux, name="flux"),
+    path("posts/", blog.views.posts, name="posts"),
     path("ticket/creer/", blog.views.creer_ticket, name="creer_ticket"),
 ]
 
