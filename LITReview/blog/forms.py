@@ -1,9 +1,8 @@
 from django import forms
+from . import models
 
 
-class AbonnementForm(forms.Form):
-    utilisateur = forms.CharField(max_length=150)
-
-
-class DesabonnementForm(forms.Form):
-    desabonner = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+class TicketForm(forms.ModelForm):
+    class Meta:
+        model = models.Ticket
+        fields = ["titre", "description", "image"]

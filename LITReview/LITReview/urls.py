@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 import connexion.views
 import blog.views
 
@@ -26,8 +28,13 @@ urlpatterns = [
          name="connexion"),
     path("deconnexion/", LogoutView.as_view(), name="deconnexion"),
     path("inscription/", connexion.views.inscription_page, name="inscription"),
-    path("flux/", blog.views.flux, name="flux"),
-    path("abonnements/", blog.views.suivre_user, name="abonnements"),
-    path("abonnements/<int:abonnement_id>/delete/", blog.views.desabonner,
+    path("abonnements/", connexion.views.suivre_user, name="abonnements"),
+    path("abonnements/<int:abonnement_id>/delete/", connexion.views.desabonner,
          name="désabonnement"),
+    path("flux/", blog.views.flux, name="flux"),
+    path("ticket/creer/", blog.views.creer_ticket, name="creer_ticket"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

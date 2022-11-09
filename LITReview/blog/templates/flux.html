@@ -3,7 +3,18 @@
 <div id="flux">
     <section id="flux_boutons">
         <a class="bouton" href="#">Demander une critique</a>
-        <a class="bouton" href="#">Créer une critique</a>
+        <a class="bouton" href="{% url 'creer_ticket' %}">Créer une critique</a>
+    </section>
+    <section>
+        {% for ticket in tickets %}
+            <p>{{ ticket.user }} a demandé une critique</p>
+            <p>{{ ticket.date }}</p>
+            <p>{{ ticket.titre }}</p>
+            <p>{{ ticket.description }}</p>
+            {% if ticket.image %}
+                <img src="{{ ticket.image.url }}">
+            {% endif %}
+        {% endfor %}
     </section>
 </div>
 
