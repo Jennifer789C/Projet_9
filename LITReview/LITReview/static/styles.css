@@ -62,16 +62,6 @@ header nav a {
     text-align: center;
 }
 
-#flux {
-    text-align: center;
-}
-#flux_boutons {
-    margin-top: 20px;
-}
-#flux_boutons .bouton {
-    margin-right: 50px;
-}
-
 #suivre_user, #abonnements, #abonnes {
     margin-top: 30px;
 }
@@ -80,4 +70,49 @@ header nav a {
 }
 #abonnements li, #abonnes li {
     padding: 5px;
+}
+
+#flux, #créer_ticket {
+    text-align: center;
+}
+#flux_boutons {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#flux_boutons .bouton {
+    margin-right: 50px;
+}
+.ticket {
+    border: 1px black solid;
+    margin-bottom: 10px;
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: left;
+    padding-left: 1%;
+}
+.ticket .user {
+    margin-bottom: 0;
+}
+.ticket .date {
+    font-size: small;
+    text-align: right;
+    padding-right: 1%;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.ticket .titre {
+    margin-top: 0;
+    font-weight: bold;
+}
+.ticket img {
+    display: block;
+    margin: auto;
+}
+.ticket .bouton {
+    display: block;
+    margin-top: 0;
+    margin-right: 1%;
+    margin-bottom: 1%;
+    margin-left: 86.5%;
+    text-align: right;
 }
