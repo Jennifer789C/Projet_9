@@ -41,7 +41,8 @@ def modifier_ticket(request, ticket_id):
     supprimer_form = forms.SupprimerTicketForm()
     if request.method == "POST":
         if "modifier_ticket" in request.POST:
-            modifier_form = forms.TicketForm(request.POST, instance=ticket)
+            modifier_form = forms.TicketForm(request.POST, request.FILES,
+                                             instance=ticket)
             if modifier_form.is_valid():
                 modifier_form.save()
                 return redirect("posts")
