@@ -11,8 +11,8 @@
                 <img src="{{ ticket.image.url }}">
             {% endif %}
             <div>
-                <a class="bouton" href="#">Modifier</a>
-                <a class="bouton" href="#">Supprimer</a>
+                <a class="bouton" href="{% url 'modifier_ticket' ticket.id %}">
+                    Modifier</a>
             </div>
         </article>
     {% endfor %}

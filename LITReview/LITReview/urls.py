@@ -29,11 +29,13 @@ urlpatterns = [
     path("deconnexion/", LogoutView.as_view(), name="deconnexion"),
     path("inscription/", connexion.views.inscription_page, name="inscription"),
     path("abonnements/", connexion.views.suivre_user, name="abonnements"),
-    path("abonnements/<int:abonnement_id>/delete/", connexion.views.desabonner,
+    path("abonnement/<int:abonnement_id>/delete/", connexion.views.desabonner,
          name="désabonnement"),
     path("flux/", blog.views.flux, name="flux"),
     path("posts/", blog.views.posts, name="posts"),
     path("ticket/creer/", blog.views.creer_ticket, name="creer_ticket"),
+    path("ticket/<int:ticket_id>/modifier/", blog.views.modifier_ticket,
+         name="modifier_ticket"),
 ]
 
 if settings.DEBUG:

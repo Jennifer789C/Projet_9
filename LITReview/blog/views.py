@@ -32,3 +32,24 @@ def creer_ticket(request):
             return redirect("flux")
     context = {"form": form}
     return render(request, "creer_ticket.html", context=context)
+
+
+@login_required
+def modifier_ticket(request, ticket_id):
+    ticket = get_object_or_404(models.Ticket, id=ticket_id)
+    modifier_form = forms.TicketForm(instance=ticket)
+    supprimer_form = forms.SupprimerTicketForm()
+    if request.method == "POST":
+        if "modifier_ticket" in request.POST:
+            modifier_form = forms.TicketForm(request.POST, instance=ticket)
+            if modifier_form.is_valid():
+                modifier_form.save()
+                return redirect("posts")
+        if "supprimer_ticket" in request.POST:
+            supprimer_form = forms.SupprimerTicketForm(request.POST)
+            if supprimer_form.is_valid():
+                ticket.delete()
+                return redirect("posts")
+    context = {"modifier_form": modifier_form,
+               "supprimer_form": supprimer_form}
+    return render(request, "modifier_ticket.html", context=context)
