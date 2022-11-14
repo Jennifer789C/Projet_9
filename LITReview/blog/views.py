@@ -76,3 +76,38 @@ def creer_critique_et_ticket(request):
             return redirect("flux")
     context = {"ticket_form": ticket_form, "critique_form": critique_form}
     return render(request, "creer_critique.html", context=context)
+
+
+@login_required
+def modifier_critique_et_ticket(request, critique_id):
+    critique = get_object_or_404(models.Critique, id=critique_id)
+    ticket = critique.ticket
+    modifier_critique_form = forms.CritiqueForm(instance=critique)
+    modifier_ticket_form = forms.TicketForm(instance=ticket)
+    supprimer_critique_form = forms.SupprimerCritiqueForm()
+    supprimer_ticket_form = forms.SupprimerTicketForm()
+    if request.method == "POST":
+        if "modifier_critique" in request.POST:
+            modifier_critique_form = forms.CritiqueForm(request.POST,
+                                                        instance=critique)
+            modifier_ticket_form = forms.TicketForm(request.POST,
+                                                    request.FILES,
+                                                    instance=ticket)
+            if all([modifier_critique_form.is_valid(),
+                    modifier_ticket_form.is_valid()]):
+                modifier_critique_form.save()
+                modifier_ticket_form.save()
+                return redirect("posts")
+        if "supprimer_critique" in request.POST:
+            supprimer_critique_form = forms.SupprimerCritiqueForm(request.POST)
+            supprimer_ticket_form = forms.SupprimerTicketForm(request.POST)
+            if all([supprimer_critique_form.is_valid(),
+                    supprimer_ticket_form.is_valid()]):
+                critique.delete()
+                ticket.delete()
+                return redirect("posts")
+    context = {"modifier_critique_form": modifier_critique_form,
+               "modifier_ticket_form": modifier_ticket_form,
+               "supprimer_critique_form": supprimer_critique_form,
+               "supprimer_ticket_form": supprimer_ticket_form}
+    return render(request, "modifier_critique.html", context=context)

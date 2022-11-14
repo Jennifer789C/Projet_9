@@ -72,7 +72,9 @@ header nav a {
     padding: 5px;
 }
 
-#flux, #posts, #créer_ticket, #modifier_ticket, #créer_critique {
+#flux, #posts, #créer_ticket, #modifier_ticket, #créer_critique,
+#modifier_critique
+ {
     text-align: center;
 }
 #flux_boutons {

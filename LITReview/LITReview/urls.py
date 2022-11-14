@@ -38,6 +38,8 @@ urlpatterns = [
          name="modifier_ticket"),
     path("critique/creer/", blog.views.creer_critique_et_ticket,
          name="creer_critique"),
+    path("critique/<int:critique_id>/modifier/",
+         blog.views.modifier_critique_et_ticket, name="modifier_critique"),
 ]
 
 if settings.DEBUG:

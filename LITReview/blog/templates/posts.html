@@ -37,7 +37,9 @@
                 {% endif %}
                 <p>{{ critique.commentaire }}</p>
                 <div>
-                    <a class="bouton" href="#">Modifier</a>
+                    <a class="bouton"
+                       href="{% url 'modifier_critique' critique.id %}">
+                        Modifier</a>
                 </div>
             </article>
         {% endfor %}
