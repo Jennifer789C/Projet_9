@@ -121,3 +121,12 @@ header nav a {
 #modifier_ticket form {
     margin-top : 5px;
 }
+
+#id_note {
+    display: flex;
+    justify-content: center;
+}
+
+#id_note div {
+    margin-right: 10px;
+}
