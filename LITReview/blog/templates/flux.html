@@ -14,7 +14,9 @@
                 <article class="ticket">
                     {% include "partials/ticket.html" with ticket=instance %}
                     <div>
-                        <a class="bouton" href="#">Créer une critique</a>
+                        <a class="bouton"
+                           href="{% url 'creer_critique_reponse' instance.id%}"
+                        >Créer une critique</a>
                     </div>
                 </article>
             {% elif instance|model_type == "Critique" %}

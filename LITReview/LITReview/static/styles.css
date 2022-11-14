@@ -73,7 +73,7 @@ header nav a {
 }
 
 #flux, #posts, #créer_ticket, #modifier_ticket, #créer_critique,
-#modifier_critique
+#modifier_critique, #créer_critique_réponse
  {
     text-align: center;
 }

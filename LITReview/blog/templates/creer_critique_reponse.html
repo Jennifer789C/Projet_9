@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="créer_critique_réponse">
+    <h2>Créer une critique réponse</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>Vous souhaitez apporter une réponse à :</p>
+        <article class="ticket">
+            {% include "partials/ticket.html" %}
+        </article>
+        <hr>
+        <h3>Critique</h3>
+        {{ critique_form.as_p }}
+        <button class="bouton" type="submit">Envoyer</button>
+    </form>
+</div>
+{% endblock content %}

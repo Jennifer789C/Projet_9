@@ -124,7 +124,16 @@ def modifier_critique_et_ticket(request, critique_id):
 
 
 @login_required
-def creer_critique_reponse(request):
-
-    context = {}
+def creer_critique_reponse(request, ticket_id):
+    ticket = get_object_or_404(models.Ticket, id=ticket_id)
+    critique_form = forms.CritiqueForm()
+    if request.method == "POST":
+        critique_form = forms.CritiqueForm(request.POST)
+        if critique_form.is_valid():
+            critique = critique_form.save(commit=False)
+            critique.user = request.user
+            critique.ticket = ticket
+            critique.save()
+            return redirect("flux")
+    context = {"critique_form": critique_form, "ticket": ticket}
     return render(request, "creer_critique_reponse.html", context=context)
