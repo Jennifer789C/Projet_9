@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div id="posts">
+    <h2>Vos posts</h2>
     {% for ticket in tickets %}
         <article class="ticket">
             <p class="user">Vous avez demandé une critique</p>
@@ -16,6 +17,18 @@
             </div>
         </article>
     {% endfor %}
+    {% for critique in critiques %}
+            <article class="critique">
+                <p class="user">Vous avez publié une critique</p>
+                <p class="date">{{ critique.date }}</p>
+                <p class="entete">{{ critique.entete }}</p>
+                <p class="note">{{ critique.note }}</p>
+                <p>{{ critique.commentaire }}</p>
+                <div>
+                    <a class="bouton" href="#">Modifier</a>
+                </div>
+            </article>
+        {% endfor %}
 </div>
 
 {% endblock content %}

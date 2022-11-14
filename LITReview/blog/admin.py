@@ -7,7 +7,7 @@ class TicketAdmin(admin.ModelAdmin):
 
 
 class CritiqueAdmin(admin.ModelAdmin):
-    list_display = ("id", "titre", "ticket", "user", "date")
+    list_display = ("id", "entete", "ticket", "user", "date")
 
 
 admin.site.register(models.Ticket, TicketAdmin)

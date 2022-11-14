@@ -1,7 +1,6 @@
 from django.db import models
 from django.conf import settings
 from django.core.validators import MinValueValidator, MaxValueValidator
-from PIL import Image
 
 
 class Ticket(models.Model):
@@ -19,6 +18,6 @@ class Critique(models.Model):
                                                         MaxValueValidator(5)])
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
-    titre = models.CharField(max_length=128)
+    entete = models.CharField(max_length=128)
     commentaire = models.TextField(max_length=8192, blank=True)
     date = models.DateTimeField(auto_now_add=True)

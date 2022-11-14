@@ -4,7 +4,7 @@
     <section id="flux_boutons">
         <a class="bouton" href="{% url 'creer_ticket' %}">
             Demander une critique</a>
-        <a class="bouton" href="#">Créer une critique</a>
+        <a class="bouton" href="{% url 'creer_critique' %}">Créer une critique</a>
     </section>
     <section>
         {% for ticket in tickets %}
@@ -19,6 +19,15 @@
                 <div>
                     <a class="bouton" href="#">Créer une critique</a>
                 </div>
+            </article>
+        {% endfor %}
+        {% for critique in critiques %}
+            <article class="critique">
+                <p class="user">{{ critique.user }} a publié une critique</p>
+                <p class="date">{{ critique.date }}</p>
+                <p class="entete">{{ critique.entete }}</p>
+                <p class="note">{{ critique.note }}</p>
+                <p>{{ critique.commentaire }}</p>
             </article>
         {% endfor %}
     </section>

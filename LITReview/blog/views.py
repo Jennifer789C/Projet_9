@@ -9,14 +9,16 @@ User = get_user_model()
 @login_required
 def flux(request):
     tickets = models.Ticket.objects.all()
-    context = {"tickets": tickets}
+    critiques = models.Critique.objects.all()
+    context = {"tickets": tickets, "critiques": critiques}
     return render(request, "flux.html", context=context)
 
 
 @login_required
 def posts(request):
     tickets = models.Ticket.objects.filter(user=request.user)
-    context = {"tickets": tickets}
+    critiques = models.Critique.objects.filter(user=request.user)
+    context = {"tickets": tickets, "critiques": critiques}
     return render(request, "posts.html", context=context)
 
 
@@ -54,3 +56,23 @@ def modifier_ticket(request, ticket_id):
     context = {"modifier_form": modifier_form,
                "supprimer_form": supprimer_form}
     return render(request, "modifier_ticket.html", context=context)
+
+
+@login_required
+def creer_critique_et_ticket(request):
+    ticket_form = forms.TicketForm()
+    critique_form = forms.CritiqueForm()
+    if request.method == "POST":
+        ticket_form = forms.TicketForm(request.POST, request.FILES)
+        critique_form = forms.CritiqueForm(request.POST)
+        if all([ticket_form.is_valid(), critique_form.is_valid()]):
+            ticket = ticket_form.save(commit=False)
+            ticket.user = request.user
+            ticket.save()
+            critique = critique_form.save(commit=False)
+            critique.user = request.user
+            critique.ticket = ticket
+            critique.save()
+            return redirect("flux")
+    context = {"ticket_form": ticket_form, "critique_form": critique_form}
+    return render(request, "creer_critique.html", context=context)

@@ -14,3 +14,9 @@ class TicketForm(forms.ModelForm):
 class SupprimerTicketForm(forms.Form):
     supprimer_ticket = forms.BooleanField(widget=forms.HiddenInput,
                                           initial=True)
+
+
+class CritiqueForm(forms.ModelForm):
+    class Meta:
+        model = models.Critique
+        fields = ["entete", "note", "commentaire"]
