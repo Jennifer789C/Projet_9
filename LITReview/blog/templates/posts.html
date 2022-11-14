@@ -1,48 +1,29 @@
 {% extends "base.html" %}
+{% load blog_extras %}
 {% block content %}
 <div id="posts">
     <h2>Vos posts</h2>
-    {% for ticket in tickets %}
-        <article class="ticket">
-            <p class="user">Vous avez demandé une critique</p>
-            <p class="date">{{ ticket.date }}</p>
-            <p class="titre">{{ ticket.titre }}</p>
-            <p>{{ ticket.description }}</p>
-            {% if ticket.image %}
-                <img src="{{ ticket.image.url }}">
-            {% endif %}
-            <div>
-                <a class="bouton" href="{% url 'modifier_ticket' ticket.id %}">
-                    Modifier</a>
-            </div>
-        </article>
-    {% endfor %}
-    {% for critique in critiques %}
-            <article class="critique">
-                <p class="user">Vous avez publié une critique</p>
-                <p class="date">{{ critique.date }}</p>
-                <p class="entete">{{ critique.entete }}</p>
-               {% if critique.note == 0 %}
-                    <p class="note">&#9734 &#9734 &#9734 &#9734 &#9734</p>
-                {% elif critique.note == 1 %}
-                    <p class="note">&#9733 &#9734 &#9734 &#9734 &#9734</p>
-                {% elif critique.note == 2 %}
-                    <p class="note">&#9733 &#9733 &#9734 &#9734 &#9734</p>
-                {% elif critique.note == 3 %}
-                    <p class="note">&#9733 &#9733 &#9733 &#9734 &#9734</p>
-                {% elif critique.note == 4 %}
-                    <p class="note">&#9733 &#9733 &#9733 &#9733 &#9734</p>
-                {% elif critique.note == 5 %}
-                    <p class="note">&#9733 &#9733 &#9733 &#9733 &#9733</p>
-                {% endif %}
-                <p>{{ critique.commentaire }}</p>
+    {% for instance in tickets_et_critiques %}
+        {% if instance|model_type == "Ticket" %}
+            <article class="ticket">
+            {% include "partials/ticket.html" with ticket=instance %}
                 <div>
                     <a class="bouton"
-                       href="{% url 'modifier_critique' critique.id %}">
+                       href="{% url 'modifier_ticket' instance.id %}">
                         Modifier</a>
                 </div>
             </article>
-        {% endfor %}
+        {% elif instance|model_type == "Critique" %}
+            <article class="critique">
+                {% include "partials/critique.html" with critique=instance %}
+                <div>
+                    <a class="bouton"
+                       href="{% url 'modifier_critique' instance.id %}">
+                        Modifier</a>
+                </div>
+            </article>
+        {% endif %}
+    {% endfor %}
 </div>
 
 {% endblock content %}

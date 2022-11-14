@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+from itertools import chain
 from . import forms, models
 
 User = get_user_model()
@@ -8,9 +10,14 @@ User = get_user_model()
 
 @login_required
 def flux(request):
-    tickets = models.Ticket.objects.all()
-    critiques = models.Critique.objects.all()
-    context = {"tickets": tickets, "critiques": critiques}
+    tickets = models.Ticket.objects.filter(
+        Q(user=request.user) | Q(user__in=request.user.abonnement.all()))
+    critiques = models.Critique.objects.filter(
+        Q(user=request.user) | Q(user__in=request.user.abonnement.all()))
+    tickets_et_critiques = sorted(chain(tickets, critiques),
+                                  key=lambda instance: instance.date,
+                                  reverse=True)
+    context = {"tickets_et_critiques": tickets_et_critiques}
     return render(request, "flux.html", context=context)
 
 
@@ -18,7 +25,10 @@ def flux(request):
 def posts(request):
     tickets = models.Ticket.objects.filter(user=request.user)
     critiques = models.Critique.objects.filter(user=request.user)
-    context = {"tickets": tickets, "critiques": critiques}
+    tickets_et_critiques = sorted(chain(tickets, critiques),
+                                  key=lambda instance: instance.date,
+                                  reverse=True)
+    context = {"tickets_et_critiques": tickets_et_critiques}
     return render(request, "posts.html", context=context)
 
 
@@ -111,3 +121,10 @@ def modifier_critique_et_ticket(request, critique_id):
                "supprimer_critique_form": supprimer_critique_form,
                "supprimer_ticket_form": supprimer_ticket_form}
     return render(request, "modifier_critique.html", context=context)
+
+
+@login_required
+def creer_critique_reponse(request):
+
+    context = {}
+    return render(request, "creer_critique_reponse.html", context=context)
