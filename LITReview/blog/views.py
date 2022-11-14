@@ -119,7 +119,8 @@ def modifier_critique_et_ticket(request, critique_id):
     context = {"modifier_critique_form": modifier_critique_form,
                "modifier_ticket_form": modifier_ticket_form,
                "supprimer_critique_form": supprimer_critique_form,
-               "supprimer_ticket_form": supprimer_ticket_form}
+               "supprimer_ticket_form": supprimer_ticket_form,
+               "ticket": ticket}
     return render(request, "modifier_critique.html", context=context)
 
 

@@ -4,8 +4,15 @@
     <h2>Modifier votre critique</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <h3>Livre/Article</h3>
-        {{ modifier_ticket_form.as_p }}
+        {% if user == ticket.user %}
+            <h3>Livre/Article</h3>
+            {{ modifier_ticket_form.as_p }}
+        {% else %}
+            <p>Vous souhaitez apporter une réponse à :</p>
+            <article class="ticket">
+                {% include "partials/ticket.html" %}
+            </article>
+        {% endif %}
         <hr>
         <h3>Critique</h3>
         {{ modifier_critique_form.as_p }}
@@ -14,7 +21,9 @@
     <form method="post">
         {% csrf_token %}
         {{ supprimer_critique_form }}
-        {{ supprimer_ticket_form }}
+        {% if user != ticket.user %}
+            {{ supprimer_ticket_form }}
+        {% endif %}
         <button class="bouton" type="submit">Supprimer</button>
     </form>
 </div>
