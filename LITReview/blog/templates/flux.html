@@ -26,7 +26,19 @@
                 <p class="user">{{ critique.user }} a publié une critique</p>
                 <p class="date">{{ critique.date }}</p>
                 <p class="entete">{{ critique.entete }}</p>
-                <p class="note">{{ critique.note }}</p>
+                {% if critique.note == 0 %}
+                    <p class="note">&#9734 &#9734 &#9734 &#9734 &#9734</p>
+                {% elif critique.note == 1 %}
+                    <p class="note">&#9733 &#9734 &#9734 &#9734 &#9734</p>
+                {% elif critique.note == 2 %}
+                    <p class="note">&#9733 &#9733 &#9734 &#9734 &#9734</p>
+                {% elif critique.note == 3 %}
+                    <p class="note">&#9733 &#9733 &#9733 &#9734 &#9734</p>
+                {% elif critique.note == 4 %}
+                    <p class="note">&#9733 &#9733 &#9733 &#9733 &#9734</p>
+                {% elif critique.note == 5 %}
+                    <p class="note">&#9733 &#9733 &#9733 &#9733 &#9733</p>
+                {% endif %}
                 <p>{{ critique.commentaire }}</p>
             </article>
         {% endfor %}
