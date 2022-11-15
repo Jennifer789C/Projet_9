@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.db.models import Q
 from itertools import chain
 from . import forms, models
@@ -28,8 +29,11 @@ def flux(request):
                                   key=lambda instance: instance.date,
                                   reverse=True)
 
-    context = {"tickets_et_critiques": tickets_et_critiques,
-               "tickets_repondus": liste_tickets_repondus}
+    paginator = Paginator(tickets_et_critiques, 4)
+    numero_page = request.GET.get("page")
+    page = paginator.get_page(numero_page)
+
+    context = {"page": page, "tickets_repondus": liste_tickets_repondus}
     return render(request, "flux.html", context=context)
 
 
@@ -40,7 +44,12 @@ def posts(request):
     tickets_et_critiques = sorted(chain(tickets, critiques),
                                   key=lambda instance: instance.date,
                                   reverse=True)
-    context = {"tickets_et_critiques": tickets_et_critiques}
+
+    paginator = Paginator(tickets_et_critiques, 4)
+    numero_page = request.GET.get("page")
+    page = paginator.get_page(numero_page)
+
+    context = {"page": page}
     return render(request, "posts.html", context=context)
 
 

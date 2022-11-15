@@ -7,7 +7,7 @@
     </section>
     <section id="connexion">
         <h1>Connectez-vous</h1>
-        <form method="post" novalidate>  <!-- supprimer le novalidate -->
+        <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <button class="bouton" type="submit">Se connecter</button>

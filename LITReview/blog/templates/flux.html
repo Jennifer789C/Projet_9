@@ -9,7 +9,7 @@
             Créer une critique</a>
     </section>
     <section>
-        {% for instance in tickets_et_critiques %}
+        {% for instance in page %}
             {% if instance|model_type == "Ticket" %}
                 <article class="ticket">
                     {% include "partials/ticket.html" with ticket=instance %}
@@ -31,6 +31,9 @@
             {% endif %}
         {% endfor %}
     </section>
+    <p>
+        {% include "partials/pagination.html" %}
+    </p>
 </div>
 
 {% endblock content %}

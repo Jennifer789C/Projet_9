@@ -2,7 +2,7 @@
 {% block content %}
 <div id="formulaire_inscription">
     <h1>Inscrivez-vous</h1>
-    <form method="post" novalidate>  <!-- supprimer le novalidate -->
+    <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <a class="bouton" href="{% url 'connexion' %}">Retour</a>

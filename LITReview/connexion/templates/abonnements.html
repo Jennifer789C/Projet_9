@@ -3,7 +3,7 @@
 <div id="page_abonnements">
     <section id="suivre_user">
         <h2>Suivre d'autres utilisateurs</h2>
-        <form method="post" novalidate>  <!-- supprimer le novalidate -->
+        <form method="post">
             {% csrf_token %}
             {{ form }}
             <button class="bouton" type="submit">Envoyer</button>

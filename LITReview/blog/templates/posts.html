@@ -3,7 +3,7 @@
 {% block content %}
 <div id="posts">
     <h2>Vos posts</h2>
-    {% for instance in tickets_et_critiques %}
+    {% for instance in page %}
         {% if instance|model_type == "Ticket" %}
             <article class="ticket">
             {% include "partials/ticket.html" with ticket=instance %}
@@ -27,6 +27,9 @@
             </article>
         {% endif %}
     {% endfor %}
+    <p>
+        {% include "partials/pagination.html" %}
+    </p>
 </div>
 
 {% endblock content %}

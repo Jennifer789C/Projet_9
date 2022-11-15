@@ -6,7 +6,7 @@
         Etes-vous sûr de vouloir vous désabonner de
         {{abonnement.user_suivi.username}} ?
     </p>
-    <form method="post" novalidate>  <!-- supprimer le novalidate -->
+    <form method="post">
         {% csrf_token %}
         {{ désabonnement }}
         <a class="bouton" href="{% url 'abonnements' %}">Retour</a>
