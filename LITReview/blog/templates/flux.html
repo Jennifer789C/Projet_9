@@ -14,9 +14,11 @@
                 <article class="ticket">
                     {% include "partials/ticket.html" with ticket=instance %}
                     <div>
+                        {% if instance.id not in tickets_repondus %}
                         <a class="bouton"
                            href="{% url 'creer_critique_reponse' instance.id%}"
                         >Créer une critique</a>
+                        {% endif %}
                     </div>
                 </article>
             {% elif instance|model_type == "Critique" %}

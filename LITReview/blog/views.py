@@ -17,7 +17,12 @@ def flux(request):
     tickets_et_critiques = sorted(chain(tickets, critiques),
                                   key=lambda instance: instance.date,
                                   reverse=True)
-    context = {"tickets_et_critiques": tickets_et_critiques}
+    liste_critiques = models.Critique.objects.all()
+    liste_tickets_repondus = []
+    for critique in liste_critiques:
+        liste_tickets_repondus.append(critique.ticket.id)
+    context = {"tickets_et_critiques": tickets_et_critiques,
+               "tickets_repondus": liste_tickets_repondus}
     return render(request, "flux.html", context=context)
 
 
