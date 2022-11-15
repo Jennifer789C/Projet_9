@@ -114,7 +114,8 @@ def modifier_critique_et_ticket(request, critique_id):
             if all([supprimer_critique_form.is_valid(),
                     supprimer_ticket_form.is_valid()]):
                 critique.delete()
-                ticket.delete()
+                if ticket.user == request.user:
+                    ticket.delete()
                 return redirect("posts")
     context = {"modifier_critique_form": modifier_critique_form,
                "modifier_ticket_form": modifier_ticket_form,

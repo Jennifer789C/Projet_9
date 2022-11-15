@@ -21,9 +21,7 @@
     <form method="post">
         {% csrf_token %}
         {{ supprimer_critique_form }}
-        {% if user != ticket.user %}
-            {{ supprimer_ticket_form }}
-        {% endif %}
+        {{ supprimer_ticket_form }}
         <button class="bouton" type="submit">Supprimer</button>
     </form>
 </div>
