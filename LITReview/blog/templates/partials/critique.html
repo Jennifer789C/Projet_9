@@ -1,6 +1,6 @@
 {% load blog_extras %}
 
-<p class="user">{{ critique.user }} a publié une critique</p>
+<p class="user">{% modifier_affichage critique.user %} publié une critique</p>
 <p class="date">{{ critique.date }}</p>
 <p class="entete">{{ critique.entete }}</p>
 {% if critique.note == 0 %}

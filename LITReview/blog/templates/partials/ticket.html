@@ -1,6 +1,6 @@
 {% load blog_extras %}
 
-<p class="user">{{ ticket.user }} a demandé une critique</p>
+<p class="user">{% modifier_affichage ticket.user %} demandé une critique</p>
 <p class="date">{{ ticket.date }}</p>
 <p class="titre">{{ ticket.titre }}</p>
 <p>{{ ticket.description }}</p>
