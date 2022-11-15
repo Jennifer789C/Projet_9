@@ -10,17 +10,24 @@ User = get_user_model()
 
 @login_required
 def flux(request):
+    liste_critiques = models.Critique.objects.all()
+    liste_tickets_repondus = []
+    liste_tickets_repondus_user = []
+    for critique in liste_critiques:
+        liste_tickets_repondus.append(critique.ticket.id)
+        if critique.ticket.user == request.user:
+            liste_tickets_repondus_user.append(critique.ticket)
+
     tickets = models.Ticket.objects.filter(
         Q(user=request.user) | Q(user__in=request.user.abonnement.all()))
     critiques = models.Critique.objects.filter(
-        Q(user=request.user) | Q(user__in=request.user.abonnement.all()))
+        Q(user=request.user) | Q(user__in=request.user.abonnement.all()) |
+        Q(ticket__in=liste_tickets_repondus_user)
+    )
     tickets_et_critiques = sorted(chain(tickets, critiques),
                                   key=lambda instance: instance.date,
                                   reverse=True)
-    liste_critiques = models.Critique.objects.all()
-    liste_tickets_repondus = []
-    for critique in liste_critiques:
-        liste_tickets_repondus.append(critique.ticket.id)
+
     context = {"tickets_et_critiques": tickets_et_critiques,
                "tickets_repondus": liste_tickets_repondus}
     return render(request, "flux.html", context=context)
